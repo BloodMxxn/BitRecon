@@ -3,16 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <script>
-      // GitHub Pages 404 redirect — sends all unknown paths back to the SPA root
-      var pathSegmentsToKeep = 1; // /BitRecon/
       var l = window.location;
-      l.replace(
-        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
-        l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
-        (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-        l.hash
-      );
+      
+      var targetUrl = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/BitRecon/';
+      
+      if (l.href !== targetUrl) {
+        l.replace(targetUrl);
+      }
     </script>
   </head>
   <body></body>
